@@ -12,5 +12,9 @@ app.use(bodyParser.urlencoded({
 }));
 //引入用户路由器
 const userRouter=require('./routes/user.js');
-//挂载路由
+//挂载用户路由
 app.use('/user',userRouter);
+//引入商品路由器
+const productRouter=require('./routes/product.js');
+//挂载商品路由器
+app.use('/product',productRouter);

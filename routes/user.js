@@ -166,7 +166,7 @@ router.get('/list',(req,res)=>{
     obj.pno=1;
   }
   if(!obj.pagesize){
-    obj.pagesize=2;
+    obj.pagesize=4;
   }
   //计算start
   let start=(obj.pno-1)*obj.pagesize;
@@ -213,8 +213,12 @@ router.post('/update',(req,res)=>{
       return;
     }
   }
+  //取出uid
+  let uid=obj.uid;
+  //删除对象中的uid
+  delete obj.uid;
   //6.3执行SQL命令
-  pool.query('UPDATE xz_user SET ? WHERE uid=?',[obj,obj.uid],(err,result)=>{
+  pool.query('UPDATE xz_user SET ? WHERE uid=?',[obj,uid],(err,result)=>{
     if(err){
       res.send({
         code:500,
